@@ -5,7 +5,8 @@
 
 ## Starting application
 1. Setup database `docker run --name temperaturedb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=1234 -d mariadb/server:10.4`
-2. Run `docker-compose up -d`
+2. Run app/src/db/schema.sql on database to setup schema, create user and load data.
+3. Run `docker-compose up -d`
 
 ## Design Decisions
 - MariaDB as a nice database with a clean available docker image

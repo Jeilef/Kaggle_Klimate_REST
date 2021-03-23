@@ -5,7 +5,7 @@ class DatabaseConnector:
     def __init__(self):
         self.con = con.connect(host="localhost",
                                port="3306",
-                               user="root",
+                               user="temperatureapp",
                                password="1234",
                                database="temperatures")
 
