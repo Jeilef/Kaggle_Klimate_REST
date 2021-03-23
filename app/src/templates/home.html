@@ -2,29 +2,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    {% block styles %}
+        <link rel="stylesheet" type="text/css" href={{url_for('static', filename="home.css")}}>
+    {% endblock %}
     <title>Temperature Web Service</title>
 </head>
 <body>
+<h1>Create a New Entry</h1>
+<form method="post" id="new-temperature-form">
+   <p> <label for="new-city">City:</label><input id="new-city" name="new-city" type="text"/></p>
+   <p> <label for="new-date">Date:</label><input id="new-date" name="new-date" type="date"/></p>
+   <p> <label for="new-temp">Average Temp:</label><input id="new-temp" name="new-temp" type="text"/></p>
+   <p> <label for="new-averange-uncertainty">Average Uncertainty:</label><input id="new-averange-uncertainty" name="new-average-uncertainty" type="text"/></p>
+   <p> <label for="new-country">Country:</label><input id="new-country" name="new-country" type="text"/></p>
+   <p> <label for="new-lat">Latitude:</label><input id="new-lat" name="new-lat" type="text"/></p>
+   <p> <label for="new-lon">Longitude:</label><input id="new-lon" name="new-lon" type="text"/></p>
+   <p> <button id="create-button" type="submit">Update Data</button></p>
+</form>
+
 <h1>Update an Existing Entry</h1>
 <form method="post" id="update-temperature-form">
    <p> <label for="selected-city">City:</label><input id="selected-city" name="selected-city" type="text"/></p>
    <p> <label for="selected-date">Date:</label><input id="selected-date" name="selected-date" type="date"/></p>
-   <p> <label for="average-temp">Average Temp:</label><input id="average-temp" name="average-temp" type="number"/></p>
-   <p> <label for="averange-uncertainty">Average Uncertainty:</label><input id="averange-uncertainty" name="average-uncertainty" type="number"/></p>
+   <p> <label for="average-temp">Average Temp:</label><input id="average-temp" name="average-temp" type="text"/></p>
+   <p> <label for="averange-uncertainty">Average Uncertainty:</label><input id="averange-uncertainty" name="average-uncertainty" type="text"/></p>
    <p> <button id="update-button" type="submit">Update Data</button></p>
 </form>
 
 <h1>Get Top N Entries of a City</h1>
 <form method="post" id="top-temperature-form">
-   <p> <label for="selected-city2">City:</label><input id="selected-city2" name="selected-city2" type="text"/></p>
-   <p> <label for="num-results">Average Temp:</label><input id="num-results" name="num-results" type="number"/></p>
+   <p> <label for="num-results">Number of rows:</label><input id="num-results" name="num-results" type="text"/></p>
+   <p> <label for="from-date">From Date:</label><input id="from-date" name="from-date" type="date"/></p>
+   <p> <label for="to-date">To Date:</label><input id="to-date" name="to-date" type="date"/></p>
    <p> <button id="update-button-top-temperature" type="submit">Get Rows</button></p>
 </form>
-
-<table>
+<h2>Highest temperatures</h2>
+<table border="1" frame="void">
+        <thead>
+        <tr><td>Date</td><td>Average Temperature</td><td>Average Temperature Uncertainty</td>
+        <td>City</td><td>Country</td><td>Latitude</td><td>Longitude</td></tr>
+        </thead>
          <tbody>
          {% for item in top_cities %}
-             <tr><td>{{ item }}</td></tr>
+            <tr>
+            {% for col in item %}
+                <td>{{col}}</td>
+            {% endfor %}
+             </tr>
+         {% endfor %}
+         </tbody>
+     </table>
+
+<h2>Lowest Temperatures</h2>
+<table border="1" frame="void">
+        <thead>
+        <tr><td>Date</td><td>Average Temperature</td><td>Average Temperature Uncertainty</td>
+        <td>City</td><td>Country</td><td>Latitude</td><td>Longitude</td></tr>
+        </thead>
+         <tbody>
+         {% for item in bottom_cities %}
+            <tr>
+            {% for col in item %}
+                <td>{{col}}</td>
+            {% endfor %}
+             </tr>
          {% endfor %}
          </tbody>
      </table>
