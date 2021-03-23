@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Temperature Web Service</title>
+</head>
+<body>
+<h1>Update an Existing Entry</h1>
+<form method="post" id="update-temperature-form">
+   <p> <label for="selected-city">City:</label><input id="selected-city" name="selected-city" type="text"/></p>
+   <p> <label for="selected-date">Date:</label><input id="selected-date" name="selected-date" type="date"/></p>
+   <p> <label for="average-temp">Average Temp:</label><input id="average-temp" name="average-temp" type="number"/></p>
+   <p> <label for="averange-uncertainty">Average Uncertainty:</label><input id="averange-uncertainty" name="average-uncertainty" type="number"/></p>
+   <p> <button id="update-button" type="submit">Update Data</button></p>
+</form>
+
+<h1>Get Top N Entries of a City</h1>
+<form method="post" id="top-temperature-form">
+   <p> <label for="selected-city2">City:</label><input id="selected-city2" name="selected-city2" type="text"/></p>
+   <p> <label for="num-results">Average Temp:</label><input id="num-results" name="num-results" type="number"/></p>
+   <p> <button id="update-button-top-temperature" type="submit">Get Rows</button></p>
+</form>
+
+<table>
+         <tbody>
+         {% for item in top_cities %}
+             <tr><td>{{ item }}</td></tr>
+         {% endfor %}
+         </tbody>
+     </table>
+</body>
+</html>
